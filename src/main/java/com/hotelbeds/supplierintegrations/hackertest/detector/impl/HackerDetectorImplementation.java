@@ -14,6 +14,17 @@ public class HackerDetectorImplementation implements HackerDetector{
 			return null;
 		}
 		
+		// dividir la linea para capturar los datos
+		String[] campos = line.split(",");
+		
+		// Verificar que la linea tiene 4 campos
+		if(campos.length != 4) {
+			log.error("Faltan campos de datos en linea " +line);
+			return null;
+		}
+		
+		
+		
 		return line;
 	}
 }

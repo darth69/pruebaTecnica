@@ -19,4 +19,9 @@ public class HackerDetectorImplementationTest {
 		assertThat(hackerDetectorImplementation.parseLine(null)).as("shouldreturnNull").isNull();
 	}
 	
+	@Test
+	public void shouldreturnNull3campos() {
+		assertThat(hackerDetectorImplementation.parseLine("a,b,c")).as("shouldreturnNull").isNull();
+	}
+	
 }
