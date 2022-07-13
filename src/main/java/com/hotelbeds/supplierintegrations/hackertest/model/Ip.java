@@ -11,13 +11,13 @@ public class Ip {
 
 	public void setIp(String ip) {
 		if(null == ip) {
-			throw new NullPointerException("IP nula detectada");
+			throw new IllegalArgumentException("IP nula detectada");
 		}
 		String[] octetos = ip.split("\\.");
 		
 		//Si no hay cuatro octetos lanzamos error
 		if(octetos.length != 4) {
-			throw new NullPointerException("Formato incorrecto para la IP " + ip); 
+			throw new IllegalArgumentException("Formato incorrecto para la IP " + ip); 
 		}
 		
 		//Rellenar los octetos de la IP
@@ -36,7 +36,7 @@ public class Ip {
 	private Byte setOcteto(String octeto) {
 		Integer octetoInt = Integer.parseInt(octeto);
 		if (octetoInt <0 || octetoInt > 254) {
-			throw new NullPointerException("Formato incorrecto para el octeto con valor " + octeto);
+			throw new IllegalArgumentException("Formato incorrecto para el octeto con valor " + octeto);
 		}
 		return octetoInt.byteValue();
 	}

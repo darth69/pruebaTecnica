@@ -14,7 +14,7 @@ public class IpTest {
 
 	@Test
 	public void shouldFailIpNull() {
-		Exception exception = assertThrows(NullPointerException.class, () -> {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 	        Ip ip = new Ip(null);
 	    });
 		
@@ -23,7 +23,7 @@ public class IpTest {
 	
 	@Test
 	public void shouldFailIpInvalid() {
-		Exception exception = assertThrows(NullPointerException.class, () -> {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 	        Ip ip = new Ip("192.168");
 	    });
 		
@@ -32,7 +32,7 @@ public class IpTest {
 
 	@Test
 	public void shouldFailIpInvalidOcteto() {
-		Exception exception = assertThrows(NullPointerException.class, () -> {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 			Ip ip = new Ip("192.168.0.255");
 		});
 		
