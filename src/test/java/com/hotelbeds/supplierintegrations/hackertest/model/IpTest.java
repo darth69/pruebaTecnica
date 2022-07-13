@@ -31,12 +31,21 @@ public class IpTest {
 	}
 
 	@Test
-	public void shouldFailIpInvalidOcteto() {
+	public void shouldFailIpInvalidOctetoMax() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 			Ip ip = new Ip("192.168.0.255");
 		});
 		
 		assertThat(exception.getMessage()).as("shouldFailIpInvalidOcteto").contains("Formato incorrecto para el octeto con valor 255");
+	}
+	
+	@Test
+	public void shouldFailIpInvalidOctetoMin() {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+			Ip ip = new Ip("192.168.0.-1");
+		});
+		
+		assertThat(exception.getMessage()).as("shouldFailIpInvalidOcteto").contains("Formato incorrecto para el octeto con valor -1");
 	}
 	
 	@Test
