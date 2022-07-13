@@ -1,13 +1,13 @@
 package com.hotelbeds.supplierintegrations.hackertest.application.enums;
 
 import com.hotelbeds.supplierintegrations.hackertest.application.logger.LoggerFactory;
-import com.hotelbeds.supplierintegrations.hackertest.application.logger.LoggerToFile;
+import com.hotelbeds.supplierintegrations.hackertest.application.logger.LoggerToLog;
 
 public enum LoggerType {
-	FileLogger(){
+	Logger2Log(){
 		@Override
 		public LoggerFactory getLogger() {
-			return new LoggerToFile();
+			return new LoggerToLog();
 		}		
 	};
 	
