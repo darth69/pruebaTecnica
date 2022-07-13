@@ -47,6 +47,15 @@ public class IpTest {
 		
 		assertThat(exception.getMessage()).as("shouldFailIpInvalidOcteto").contains("Formato incorrecto para el octeto con valor -1");
 	}
+
+	@Test
+	public void shouldFailIpInvalidOctetoCharacter() {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+			Ip ip = new Ip("192.168.0.a");
+		});
+		
+		assertThat(exception.getMessage()).as("shouldFailIpInvalidOcteto").contains("No es un numero valido para el octeto con valor a");
+	}
 	
 	@Test
 	public void shouldReturnIp() {

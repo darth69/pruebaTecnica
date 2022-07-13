@@ -34,7 +34,15 @@ public class Ip {
 	}
 	
 	private Byte setOcteto(String octeto) {
-		Integer octetoInt = Integer.parseInt(octeto);
+		//Convertir Cadena a Numero		
+		Integer octetoInt;
+		try {
+			octetoInt = Integer.parseInt(octeto);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("No es un numero valido para el octeto con valor " + octeto);
+		}
+		
+		//Validar rango del octeto
 		if (octetoInt <0 || octetoInt > 254) {
 			throw new IllegalArgumentException("Formato incorrecto para el octeto con valor " + octeto);
 		}
@@ -42,6 +50,7 @@ public class Ip {
 	}
 	
 	private String getOcteto(Byte octeto) {
+		//Convertir de Byte a String valido
 		Integer octetoInt = octeto & 0xFF;
 		return octetoInt.toString();
 	}
