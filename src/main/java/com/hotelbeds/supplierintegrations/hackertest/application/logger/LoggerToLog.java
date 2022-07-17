@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LoggerToLog implements LoggerFactory {
 
 	@Override
-	public void logBadIp(String line, Exception e) {
+	public void logBadParseLine(String line, Exception e) {
 		StringBuilder sb = new StringBuilder();
 		if(null != e) {
 			sb.append(e.getMessage() + " -> ");

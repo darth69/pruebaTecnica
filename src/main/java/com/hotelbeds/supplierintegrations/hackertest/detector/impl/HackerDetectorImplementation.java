@@ -1,5 +1,9 @@
 package com.hotelbeds.supplierintegrations.hackertest.detector.impl;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 import org.springframework.beans.factory.annotation.Value;
 
 import com.hotelbeds.supplierintegrations.hackertest.application.enums.LoggerType;
@@ -39,11 +43,25 @@ public class HackerDetectorImplementation implements HackerDetector{
 			//Creamos la IP desde el primer campo
 			Ip ip = new Ip(campos[0]);
 		} catch (Exception e) {
-			logger.logBadIp(line, e);
+			logger.logBadParseLine(line, e);
 			return null;
 		} 
 		
+		//Convertir el EPOCH a LocalDateTime
 		
+		try {
+			Long epoch = Long.parseLong(campos[0]);
+			
+			LocalDateTime localDateTimeOfEvent = Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalDateTime();
+		} catch (NumberFormatException e) {
+			logger.logBadParseLine(line, e);
+		}
+		
+		
+		
+		//Detectar si es OK o KO el login
+		
+		//Analizar la linea para detectar intento de hack
 		
 		return line;
 	}

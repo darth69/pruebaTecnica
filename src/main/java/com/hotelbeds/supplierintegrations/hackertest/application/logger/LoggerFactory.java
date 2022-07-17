@@ -2,6 +2,6 @@ package com.hotelbeds.supplierintegrations.hackertest.application.logger;
 
 public interface LoggerFactory {
 	
-	public void logBadIp(String line, Exception e);
+	public void logBadParseLine(String line, Exception e);	
 
 }
