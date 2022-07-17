@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.hotelbeds.supplierintegrations.hackertest.application.enums.LoggerType;
 import com.hotelbeds.supplierintegrations.hackertest.application.logger.LoggerFactory;
+import com.hotelbeds.supplierintegrations.hackertest.application.utils.UtilsDateTime;
 import com.hotelbeds.supplierintegrations.hackertest.detector.HackerDetector;
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
 
@@ -62,9 +63,7 @@ public class HackerDetectorImplementation implements HackerDetector{
 		
 		//Convertir el EPOCH a LocalDateTime
 		try {
-			Long epoch = Long.parseLong(campos[1]);
-			
-			LocalDateTime localDateTimeOfEvent = Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalDateTime();
+			UtilsDateTime.parseLocalDateTimeEvent(campos[1]);
 		} catch (NumberFormatException e) {			
 			logger.logBadParseLine(line, e);
 			return null;
@@ -75,4 +74,8 @@ public class HackerDetectorImplementation implements HackerDetector{
 		
 		return line;
 	}
+
+
+
+	
 }
