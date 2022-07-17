@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.detector.impl;
+package com.hotelbeds.supplierintegrations.hackertest.detector;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
+
+import com.hotelbeds.supplierintegrations.hackertest.detector.impl.HackerDetectorImplementation;
 
 @ExtendWith(MockitoExtension.class)
 public class HackerDetectorImplementationTest {

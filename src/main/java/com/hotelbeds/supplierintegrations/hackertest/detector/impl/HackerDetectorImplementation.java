@@ -65,8 +65,7 @@ public class HackerDetectorImplementation implements HackerDetector{
 			Long epoch = Long.parseLong(campos[1]);
 			
 			LocalDateTime localDateTimeOfEvent = Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalDateTime();
-		} catch (NumberFormatException e) {
-			
+		} catch (NumberFormatException e) {			
 			logger.logBadParseLine(line, e);
 			return null;
 		}
