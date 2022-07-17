@@ -15,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 
 public class HackerDetectorImplementation implements HackerDetector{
 	
+	private static final String SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
+	private static final String SIGNIN_FAILURE = "SIGNIN_FAILURE";
 	@Value("${logger.type}")
 	private String loggerType;
 	
@@ -39,8 +41,19 @@ public class HackerDetectorImplementation implements HackerDetector{
 			return null;
 		}
 		
+		//Verificamos si es Login OK no continuamos
+		if(SIGNIN_SUCCESS.equals(campos[2])) {
+			return null;
+		}
+		
+		//Si el login no es KO es un formato no reconocido y lanzamos error		
+		if(!SIGNIN_FAILURE.equals(campos[2])) {
+			logger.logBadParseLine(line, new IllegalArgumentException("Opción de login no valida"));
+			return null;
+		}
+		
+		//Creamos la IP desde el primer campo
 		try {
-			//Creamos la IP desde el primer campo
 			Ip ip = new Ip(campos[0]);
 		} catch (Exception e) {
 			logger.logBadParseLine(line, e);
@@ -48,9 +61,8 @@ public class HackerDetectorImplementation implements HackerDetector{
 		} 
 		
 		//Convertir el EPOCH a LocalDateTime
-		
 		try {
-			Long epoch = Long.parseLong(campos[0]);
+			Long epoch = Long.parseLong(campos[1]);
 			
 			LocalDateTime localDateTimeOfEvent = Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalDateTime();
 		} catch (NumberFormatException e) {
@@ -59,11 +71,8 @@ public class HackerDetectorImplementation implements HackerDetector{
 			return null;
 		}
 		
-		
-		
-		//Detectar si es OK o KO el login
-		
 		//Analizar la linea para detectar intento de hack
+		
 		
 		return line;
 	}
