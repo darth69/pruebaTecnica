@@ -9,7 +9,7 @@ public class LoggerToLog implements LoggerFactory {
 	public void logBadParseLine(String line, Exception e) {
 		StringBuilder sb = new StringBuilder();
 		if(null != e) {
-			sb.append(e.getMessage() + " -> ");
+			sb.append(e.getClass().toString() + " !!!! " + e.getMessage() + " -> ");
 		}
 		sb.append(line);
 		log.error(sb.toString());

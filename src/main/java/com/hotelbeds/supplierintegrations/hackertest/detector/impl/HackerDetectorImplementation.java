@@ -35,7 +35,7 @@ public class HackerDetectorImplementation implements HackerDetector{
 		
 		// Verificar que la linea tiene 4 campos
 		if(campos.length != 4) {
-			logger.logBadIp("Faltan campos de datos en linea " + line, null);
+			logger.logBadParseLine("Faltan campos de datos en linea " + line, null);
 			return null;
 		}
 		
@@ -54,7 +54,9 @@ public class HackerDetectorImplementation implements HackerDetector{
 			
 			LocalDateTime localDateTimeOfEvent = Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalDateTime();
 		} catch (NumberFormatException e) {
+			
 			logger.logBadParseLine(line, e);
+			return null;
 		}
 		
 		
