@@ -1,18 +1,13 @@
 package com.hotelbeds.supplierintegrations.hackertest.detector.impl;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.hotelbeds.supplierintegrations.hackertest.application.enums.LoggerType;
 import com.hotelbeds.supplierintegrations.hackertest.application.logger.LoggerFactory;
-import com.hotelbeds.supplierintegrations.hackertest.application.utils.UtilsDateTime;
+import com.hotelbeds.supplierintegrations.hackertest.application.utils.datetime.UtilsDateTime;
 import com.hotelbeds.supplierintegrations.hackertest.detector.HackerDetector;
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
-
-import lombok.extern.slf4j.Slf4j;
 
 public class HackerDetectorImplementation implements HackerDetector{
 	
@@ -21,7 +16,8 @@ public class HackerDetectorImplementation implements HackerDetector{
 	@Value("${logger.type}")
 	private String loggerType;
 	
-	
+	@Autowired
+	private UtilsDateTime utilsDateTime;	
 
 	@Override
 	public String parseLine(String line) {
@@ -63,19 +59,14 @@ public class HackerDetectorImplementation implements HackerDetector{
 		
 		//Convertir el EPOCH a LocalDateTime
 		try {
-			UtilsDateTime.parseLocalDateTimeEvent(campos[1]);
+			utilsDateTime.parseLocalDateTimeEvent(campos[1]);
 		} catch (NumberFormatException e) {			
 			logger.logBadParseLine(line, e);
 			return null;
 		}
 		
-		//Analizar la linea para detectar intento de hack
-		
+		//Analizar la linea para detectar intento de hack		
 		
 		return line;
 	}
-
-
-
-	
 }
