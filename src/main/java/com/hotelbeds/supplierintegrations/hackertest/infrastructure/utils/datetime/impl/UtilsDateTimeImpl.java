@@ -3,6 +3,10 @@ package com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datet
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -16,6 +20,16 @@ public class UtilsDateTimeImpl implements UtilsDateTime {
 		Long epoch = Long.parseLong(campo);
 		
 		return Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalDateTime();
+	}
+
+	@Override
+	public List<LocalDateTime> orderLocalDateTimeList(List<LocalDateTime> events) {
+		
+		Comparator<LocalDateTime> comparator = (v1, v2) ->{
+			return v1.compareTo(v2);
+		};
+		
+		return events.stream().sorted(comparator.reversed()).collect(Collectors.toList());
 	}
 
 }
