@@ -10,6 +10,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,8 +22,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.hotelbeds.supplierintegrations.hackertest.infrastructure.FileEventReader;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFromFile;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventReader;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventWriter;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.file.UtilsFile;
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
@@ -52,6 +54,9 @@ public class DetectorFromFileTest {
 	@Mock
 	UtilsFile utilsFile;
 	
+	@Mock
+	FileEventWriter fileEventWriter;
+	
 	@BeforeEach
 	private void initTest() {
 		ReflectionTestUtils.setField(detectorFromFile, "rutaAlmacenIps", "/ips");
@@ -70,7 +75,10 @@ public class DetectorFromFileTest {
 		Long now5 = ahoraZoned5.toInstant().toEpochMilli();
 		events.add(now5.toString());
 		
+		List<LocalDateTime> ldtList = new ArrayList<>();
+		ldtList.add(ahora);
 		
+		when(utilsDateTime.orderLocalDateTimeList(any())).thenReturn(ldtList);
 		when(fileEventReader.recoveryEventsForIp(any())).thenReturn(events);
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenReturn(ahora.plusSeconds(LONG_300PLUS));
 		doNothing().when(utilsFile).CrearDirectorios(any());
@@ -89,7 +97,10 @@ public class DetectorFromFileTest {
 		Long now5 = ahoraZoned5.toInstant().toEpochMilli();
 		events.add(now5.toString());
 		
+		List<LocalDateTime> ldtList = new ArrayList<>();
+		ldtList.add(ahora);
 		
+		when(utilsDateTime.orderLocalDateTimeList(any())).thenReturn(ldtList);
 		when(fileEventReader.recoveryEventsForIp(any())).thenReturn(events);
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenReturn(ahora.plusSeconds(LONG_300MINUS));
 		
@@ -107,7 +118,10 @@ public class DetectorFromFileTest {
 		Long now5 = ahoraZoned5.toInstant().toEpochMilli();
 		events.add(now5.toString());
 		
+		List<LocalDateTime> ldtList = new ArrayList<>();
+		ldtList.add(ahora);
 		
+		when(utilsDateTime.orderLocalDateTimeList(any())).thenReturn(ldtList);
 		when(fileEventReader.recoveryEventsForIp(any())).thenReturn(events);
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenReturn(ahora.plusSeconds(LONG_301MINUS));
 		
@@ -125,7 +139,10 @@ public class DetectorFromFileTest {
 		Long now5 = ahoraZoned5.toInstant().toEpochMilli();
 		events.add(now5.toString());
 		
+		List<LocalDateTime> ldtList = new ArrayList<>();
+		ldtList.add(ahora);
 		
+		when(utilsDateTime.orderLocalDateTimeList(any())).thenReturn(ldtList);
 		when(fileEventReader.recoveryEventsForIp(any())).thenReturn(events);
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenReturn(ahora.plusSeconds(LONG_301PLUS));
 		
