@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.application.fileprocesors.impl;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.impl.FileEventReaderImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class FileEventReaderImplTest {

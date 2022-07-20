@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.hotelbeds.supplierintegrations.hackertest.application.enums.LoggerType;
-import com.hotelbeds.supplierintegrations.hackertest.application.logger.LoggerFactory;
-import com.hotelbeds.supplierintegrations.hackertest.application.utils.datetime.UtilsDateTime;
 import com.hotelbeds.supplierintegrations.hackertest.detector.HackerDetector;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger.LoggerFactory;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
 
 public class HackerDetectorImplementation implements HackerDetector{

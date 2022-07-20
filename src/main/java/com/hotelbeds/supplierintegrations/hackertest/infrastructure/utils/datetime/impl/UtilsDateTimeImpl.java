@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.application.utils.datetime.impl;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.impl;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -6,7 +6,7 @@ import java.time.ZoneId;
 
 import org.springframework.stereotype.Service;
 
-import com.hotelbeds.supplierintegrations.hackertest.application.utils.datetime.UtilsDateTime;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @Service
 public class UtilsDateTimeImpl implements UtilsDateTime {

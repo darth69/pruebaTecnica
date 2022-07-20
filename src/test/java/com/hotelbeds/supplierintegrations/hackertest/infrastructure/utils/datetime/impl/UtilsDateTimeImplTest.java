@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.application.utils.datetime.impl;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.impl.UtilsDateTimeImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class UtilsDateTimeImplTest {

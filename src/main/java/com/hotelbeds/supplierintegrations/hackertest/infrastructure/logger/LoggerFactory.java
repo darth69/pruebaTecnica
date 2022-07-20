@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.application.logger;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger;
 
 public interface LoggerFactory {
 	

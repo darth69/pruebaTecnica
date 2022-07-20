@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.application.detector;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.application.fileprocesors;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure;
 
 import java.io.File;
 import java.util.ArrayList;

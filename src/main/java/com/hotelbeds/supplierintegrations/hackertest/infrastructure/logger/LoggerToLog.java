@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.application.logger;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger;
 
 import lombok.extern.slf4j.Slf4j;
 

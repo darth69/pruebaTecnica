@@ -15,8 +15,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.hotelbeds.supplierintegrations.hackertest.application.utils.datetime.UtilsDateTime;
 import com.hotelbeds.supplierintegrations.hackertest.detector.impl.HackerDetectorImplementation;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @ExtendWith(MockitoExtension.class)
 public class HackerDetectorImplementationTest {

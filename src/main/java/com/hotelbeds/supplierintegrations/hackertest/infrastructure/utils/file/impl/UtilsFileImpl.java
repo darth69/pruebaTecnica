@@ -1,10 +1,10 @@
-package com.hotelbeds.supplierintegrations.hackertest.application.utils.file.impl;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.file.impl;
 
 import java.io.File;
 
 import org.springframework.stereotype.Service;
 
-import com.hotelbeds.supplierintegrations.hackertest.application.utils.file.UtilsFile;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.file.UtilsFile;
 
 import lombok.extern.slf4j.Slf4j;
 

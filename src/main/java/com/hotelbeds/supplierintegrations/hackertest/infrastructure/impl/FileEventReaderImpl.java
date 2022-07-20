@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.application.fileprocesors.impl;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure.impl;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import com.hotelbeds.supplierintegrations.hackertest.application.fileprocesors.FileEventReader;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.FileEventReader;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

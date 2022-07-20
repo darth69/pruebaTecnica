@@ -21,10 +21,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.hotelbeds.supplierintegrations.hackertest.application.detector.DetectorFromFile;
-import com.hotelbeds.supplierintegrations.hackertest.application.fileprocesors.FileEventReader;
-import com.hotelbeds.supplierintegrations.hackertest.application.utils.datetime.UtilsDateTime;
-import com.hotelbeds.supplierintegrations.hackertest.application.utils.file.UtilsFile;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.FileEventReader;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFromFile;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.file.UtilsFile;
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
 
 @ExtendWith(MockitoExtension.class)
@@ -55,6 +55,8 @@ public class DetectorFromFileTest {
 	@BeforeEach
 	private void initTest() {
 		ReflectionTestUtils.setField(detectorFromFile, "rutaAlmacenIps", "/ips");
+		ReflectionTestUtils.setField(detectorFromFile, "maxLimit", 300L);
+		ReflectionTestUtils.setField(detectorFromFile, "minLimit", -300L);
 	}
 	
 	@Test
