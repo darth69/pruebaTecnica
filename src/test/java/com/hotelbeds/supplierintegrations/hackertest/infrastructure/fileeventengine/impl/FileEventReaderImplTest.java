@@ -1,4 +1,4 @@
-package com.hotelbeds.supplierintegrations.hackertest.infrastructure.impl;
+package com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.hotelbeds.supplierintegrations.hackertest.infrastructure.impl.FileEventReaderImpl;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.impl.FileEventReaderImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class FileEventReaderImplTest {
