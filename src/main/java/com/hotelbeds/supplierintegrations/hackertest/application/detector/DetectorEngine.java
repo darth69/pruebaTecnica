@@ -13,11 +13,14 @@ public class DetectorEngine {
 
 	@Value("${detector.ip.min.limit}")
 	private long minLimit;
+
+	@Value("${detector.ip.retry.limit}")
+	private long retryLimit;
 	
 	public boolean detectIp(List<LocalDateTime> events, LocalDateTime eventDateTime) {
 		Long res = events.stream().map(event -> ChronoUnit.SECONDS.between(event, eventDateTime))
 				.filter(event -> event >= minLimit && event <= maxLimit)				
 				.count();
-		return res > 0;
+		return res >= retryLimit;
 	}
 }
