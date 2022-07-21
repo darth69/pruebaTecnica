@@ -1,8 +1,10 @@
 package com.hotelbeds.pruebaTecnica;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-public class PruebaTecnicaApplicationTest {
+@SpringBootTest
+class PruebaTecnicaApplicationTest {
 
 	@Test
 	public void testMain() {
