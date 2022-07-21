@@ -1,8 +1,8 @@
 package com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.hotelbeds.supplierintegrations.hackertest.application.detector.DetectorEngine;
-import com.hotelbeds.supplierintegrations.hackertest.infrastructure.FileEventReader;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventReader;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventWriter;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.file.UtilsFile;
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
@@ -31,6 +32,9 @@ public class DetectorFromFile extends DetectorEngine implements DetectorFactory 
 	
 	@Autowired
 	private UtilsFile utilsFile;
+	
+	@Autowired
+	private FileEventWriter fileEventWriter;
 		
 	@Override
 	public boolean analizeIp(Ip ip, LocalDateTime eventDateTime) {
@@ -44,6 +48,25 @@ public class DetectorFromFile extends DetectorEngine implements DetectorFactory 
 		//Cargar eventos
 		List<LocalDateTime> events = fileEventReader.recoveryEventsForIp(file).stream().map(utilsDateTime::parseLocalDateTimeEvent).collect(Collectors.toList());
 		
-		return detectIp(events, eventDateTime);	
+		//Detectar resultado
+		boolean res = detectIp(events, eventDateTime);
+		
+		//Cargar evento a la lista
+		
+		events.add(eventDateTime);
+		
+		//Ordenar elementos para la persistencia de mayor a menor
+		events = utilsDateTime.orderLocalDateTimeList(events);
+		
+		//Persistir la lista		
+		try {
+			fileEventWriter.writeEvents(file, events);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		//retornar Resultado
+		return res;
 	}	
 }
