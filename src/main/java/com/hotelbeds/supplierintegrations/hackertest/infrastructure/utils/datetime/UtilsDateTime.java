@@ -9,6 +9,6 @@ public interface UtilsDateTime {
 	
 	List<LocalDateTime> orderLocalDateTimeList(List<LocalDateTime> events);
 	
-	Long LocalDateTimeToEpoch(LocalDateTime ldt);
+	Long localDateTimeToEpoch(LocalDateTime ldt);
 
 }

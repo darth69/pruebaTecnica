@@ -32,7 +32,7 @@ public class UtilsDateTimeImpl implements UtilsDateTime {
 	}
 
 	@Override
-	public Long LocalDateTimeToEpoch(LocalDateTime ldt) {	
+	public Long localDateTimeToEpoch(LocalDateTime ldt) {	
 		Instant instant = ldt.atZone(ZoneId.systemDefault()).toInstant();	
 		return instant.toEpochMilli(); 
 	}

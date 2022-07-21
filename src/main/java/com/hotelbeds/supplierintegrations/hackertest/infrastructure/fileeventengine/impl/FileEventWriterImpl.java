@@ -28,7 +28,7 @@ public class FileEventWriterImpl implements FileEventWriter{
 		FileWriter fw = new FileWriter(file);
 				
 		List<String> epochList = events.stream()
-			.map(utilsDateTime::LocalDateTimeToEpoch)
+			.map(utilsDateTime::localDateTimeToEpoch)
 			.map(x -> x.toString())
 			.limit(limit)
 			.collect(Collectors.toList());
