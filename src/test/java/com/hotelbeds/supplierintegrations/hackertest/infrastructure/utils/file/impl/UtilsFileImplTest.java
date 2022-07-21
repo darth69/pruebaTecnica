@@ -42,7 +42,7 @@ class UtilsFileImplTest {
 	@Test
 	void testCrearDirectoriosNoExiste() {
 		
-		utilsFileImpl.CrearDirectorios(testDir);
+		utilsFileImpl.crearDirectorios(testDir);
 		
 		File dirTest = new File(testDir);
 		assertThat(dirTest).as("testCrearDirectoriosNoExiste").exists();
@@ -52,7 +52,7 @@ class UtilsFileImplTest {
 	@Test
 	void testCrearDirectoriosExiste() {
 				
-		utilsFileImpl.CrearDirectorios(baseTestDir);
+		utilsFileImpl.crearDirectorios(baseTestDir);
 				
 		assertThat(tempDir).as("testCrearDirectoriosExiste").exists();
 	}

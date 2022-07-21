@@ -82,7 +82,7 @@ class DetectorFromFileTest {
 		when(utilsDateTime.orderLocalDateTimeList(any())).thenReturn(ldtList);
 		when(fileEventReader.recoveryEventsForIp(any())).thenReturn(events);
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenReturn(ahora.plusSeconds(LONG_300PLUS));
-		doNothing().when(utilsFile).CrearDirectorios(any());
+		doNothing().when(utilsFile).crearDirectorios(any());
 		
 		assertThat(detectorFromFile.analizeIp(new Ip(IP_192_168_1_0), ahora)).as("shouldTrue300Plus").isTrue();
 	}

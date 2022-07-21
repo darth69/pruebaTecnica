@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UtilsFileImpl implements UtilsFile {
 	
 	@Override
-	public void CrearDirectorios(String ruta) {
+	public void crearDirectorios(String ruta) {
 		
 		//Crear Objeto para tratamiento del almacen
 				File dir = new File(ruta);

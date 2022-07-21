@@ -40,7 +40,7 @@ public class DetectorFromFile extends DetectorEngine implements DetectorFactory 
 	public boolean analizeIp(Ip ip, LocalDateTime eventDateTime) {
 		
 		//Crear Objeto para tratamiento del almacen
-		utilsFile.CrearDirectorios(rutaAlmacenIps);
+		utilsFile.crearDirectorios(rutaAlmacenIps);
 		
 		// Crear Objeto para cargar los eventos
 		File file = new File(rutaAlmacenIps + "/" + ip.getIp() + ".txt");		
