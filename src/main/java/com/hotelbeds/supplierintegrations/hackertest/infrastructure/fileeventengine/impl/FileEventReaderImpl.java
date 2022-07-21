@@ -35,11 +35,9 @@ public class FileEventReaderImpl implements FileEventReader{
 				}
 			bufferedReader.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();				
+			log.error("Fichero no encontrado -> " + file.getAbsolutePath(), e);			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();				
+			log.error("Error al cargar fichero -> " + file.getAbsolutePath(), e);			
 		}
 		log.info("Ips cargadas en memoria");
 		return events;
