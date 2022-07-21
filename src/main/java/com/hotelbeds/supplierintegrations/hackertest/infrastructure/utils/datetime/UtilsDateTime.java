@@ -8,5 +8,7 @@ public interface UtilsDateTime {
 	LocalDateTime parseLocalDateTimeEvent(String campo);
 	
 	List<LocalDateTime> orderLocalDateTimeList(List<LocalDateTime> events);
+	
+	Long LocalDateTimeToEpoch(LocalDateTime ldt);
 
 }

@@ -32,4 +32,10 @@ public class UtilsDateTimeImpl implements UtilsDateTime {
 		return events.stream().sorted(comparator.reversed()).collect(Collectors.toList());
 	}
 
+	@Override
+	public Long LocalDateTimeToEpoch(LocalDateTime ldt) {
+		Instant instant = ldt.atZone(ZoneId.systemDefault()).toInstant();	
+		return instant.toEpochMilli(); 
+	}
+
 }
