@@ -62,6 +62,7 @@ public class DetectorFromFileTest {
 		ReflectionTestUtils.setField(detectorFromFile, "rutaAlmacenIps", "/ips");
 		ReflectionTestUtils.setField(detectorFromFile, "maxLimit", 300L);
 		ReflectionTestUtils.setField(detectorFromFile, "minLimit", -300L);
+		ReflectionTestUtils.setField(detectorFromFile, "retryLimit", 1L);
 	}
 	
 	@Test

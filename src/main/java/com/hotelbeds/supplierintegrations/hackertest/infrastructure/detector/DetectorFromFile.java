@@ -62,8 +62,7 @@ public class DetectorFromFile extends DetectorEngine implements DetectorFactory 
 		try {
 			fileEventWriter.writeEvents(file, events);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error al persisitir el fichero ->" + file.getAbsolutePath(), e);
 		}		
 		
 		//retornar Resultado
