@@ -51,17 +51,18 @@ public class HackerDetectorImpl implements HackerDetector{
 			return null;
 		}
 		
+		Ip ip;
 		//Creamos la IP desde el primer campo
 		try {
-			Ip ip = new Ip(campos[0]);
+			ip = new Ip(campos[0]);
 		} catch (Exception e) {
 			logger.logBadParseLine(line, e);
 			return null;
 		} 
-		
+		LocalDateTime event;
 		//Convertir el EPOCH a LocalDateTime
 		try {
-			utilsDateTime.parseLocalDateTimeEvent(campos[1]);
+			event = utilsDateTime.parseLocalDateTimeEvent(campos[1]);
 		} catch (NumberFormatException e) {			
 			logger.logBadParseLine(line, e);
 			return null;

@@ -1,4 +1,4 @@
-package com.hotelbeds.pruebaTecnica;
+package com.hotelbeds.pruebatecnica;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

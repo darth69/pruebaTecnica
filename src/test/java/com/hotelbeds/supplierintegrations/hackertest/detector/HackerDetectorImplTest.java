@@ -41,7 +41,7 @@ class HackerDetectorImplTest {
 	
 	@BeforeEach
 	private void initTest() {
-		ReflectionTestUtils.setField(hackerDetectorImplementation, "loggerType", "Logger2Log");		
+		ReflectionTestUtils.setField(hackerDetectorImplementation, "loggerType", "LOGGER2LOG");		
 	}
 	
 	@Test
