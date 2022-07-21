@@ -1,11 +1,11 @@
 package com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
-
 public interface FileEventWriter {
-
-	public boolean writeEvents(Ip ip, List<LocalDateTime> events);
+	
+	boolean writeEvents(File file, List<LocalDateTime> events) throws IOException;
 }
