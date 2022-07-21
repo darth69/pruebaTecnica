@@ -2,6 +2,7 @@ package com.hotelbeds.supplierintegrations.hackertest.detector.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.hotelbeds.supplierintegrations.hackertest.application.enums.LoggerType;
 import com.hotelbeds.supplierintegrations.hackertest.detector.HackerDetector;
@@ -9,7 +10,8 @@ import com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger.Logge
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
 
-public class HackerDetectorImplementation implements HackerDetector{
+@Service
+public class HackerDetectorImpl implements HackerDetector{
 	
 	private static final String SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 	private static final String SIGNIN_FAILURE = "SIGNIN_FAILURE";
