@@ -12,7 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.impl.FileEventReaderImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class FileEventReaderImplTest {
+class FileEventReaderImplTest {
 	
 	@InjectMocks
 	FileEventReaderImpl fileEventReaderImpl;

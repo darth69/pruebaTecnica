@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.impl.UtilsDateTimeImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class UtilsDateTimeImplTest {
+class UtilsDateTimeImplTest {
 
 	@InjectMocks
 	UtilsDateTimeImpl utilsDateTimeImpl;

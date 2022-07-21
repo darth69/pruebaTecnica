@@ -21,7 +21,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @ExtendWith(MockitoExtension.class)
-public class FileEventWriterImplTest {
+class FileEventWriterImplTest {
 	
 	@InjectMocks
 	private FileEventWriterImpl fileEventWriterImpl;

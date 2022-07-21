@@ -30,7 +30,7 @@ import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.file.U
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
 
 @ExtendWith(MockitoExtension.class)
-public class DetectorFromFileTest {
+class DetectorFromFileTest {
 	
 	private static final long LONG_300PLUS = 300L; 
 	private static final long LONG_300MINUS = -300L;

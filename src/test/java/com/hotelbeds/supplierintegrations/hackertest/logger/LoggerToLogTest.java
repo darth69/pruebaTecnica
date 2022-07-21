@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger.LoggerToLog;
 
 @ExtendWith(MockitoExtension.class)
-public class LoggerToLogTest {
+class LoggerToLogTest {
 	
 	@InjectMocks
 	LoggerToLog service;

@@ -15,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.file.impl.UtilsFileImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class UtilsFileImplTest {
+class UtilsFileImplTest {
 
 	@InjectMocks
 	UtilsFileImpl utilsFileImpl;

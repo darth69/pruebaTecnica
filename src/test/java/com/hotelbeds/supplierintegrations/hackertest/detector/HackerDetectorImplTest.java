@@ -19,7 +19,7 @@ import com.hotelbeds.supplierintegrations.hackertest.detector.impl.HackerDetecto
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @ExtendWith(MockitoExtension.class)
-public class HackerDetectorImplTest {
+class HackerDetectorImplTest {
 
 	private static final String IP = "192.168.1.0";
 	private static final String BAD_EPOCH = "92233720368547758071";	
