@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class PruebaTecnicaApplicationTest {
 
 	@Test
-	public void testMain() {
+	void testMain() {
 		//TODO: Implement full test
 		
 		PruebaTecnicaApplication.main(new String[] {});		

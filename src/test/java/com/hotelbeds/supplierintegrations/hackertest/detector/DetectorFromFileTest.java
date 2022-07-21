@@ -66,7 +66,7 @@ class DetectorFromFileTest {
 	}
 	
 	@Test
-	public void shouldTrue300Plus() {
+	void shouldTrue300Plus() {
 		
 		ArrayList<String> events = new ArrayList<>();
 		
@@ -88,7 +88,7 @@ class DetectorFromFileTest {
 	}
 	
 	@Test
-	public void shouldTrue300Minus() {
+	void shouldTrue300Minus() {
 		
 		ArrayList<String> events = new ArrayList<>();
 		
@@ -109,7 +109,7 @@ class DetectorFromFileTest {
 	}
 	
 	@Test
-	public void shouldFalse301Minus() {
+	void shouldFalse301Minus() {
 		
 		ArrayList<String> events = new ArrayList<>();
 		
@@ -130,7 +130,7 @@ class DetectorFromFileTest {
 	}
 
 	@Test
-	public void shouldFalse301Plus() {
+	void shouldFalse301Plus() {
 		
 		ArrayList<String> events = new ArrayList<>();
 		

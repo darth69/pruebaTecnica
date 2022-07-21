@@ -30,7 +30,7 @@ class FileEventWriterImplTest {
 	private UtilsDateTime utilsDateTime;
 
 	@Test
-	public void testWriteEvents() {
+	void testWriteEvents() {
 		ClassLoader classLoader = getClass().getClassLoader();
 		File file = new File(classLoader.getResource("files/192.168.1.1.txt").getFile());
 		

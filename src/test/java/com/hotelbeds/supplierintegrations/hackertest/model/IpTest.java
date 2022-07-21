@@ -13,7 +13,7 @@ class IpTest {
 	private static final String IP = "192.168.1.1";
 
 	@Test
-	public void shouldFailIpNull() {
+	void shouldFailIpNull() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 	        Ip ip = new Ip(null);
 	    });
@@ -22,7 +22,7 @@ class IpTest {
 	}
 	
 	@Test
-	public void shouldFailIpInvalid() {
+	void shouldFailIpInvalid() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 	        Ip ip = new Ip("192.168");
 	    });
@@ -31,7 +31,7 @@ class IpTest {
 	}
 
 	@Test
-	public void shouldFailIpInvalidOctetoMax() {
+	void shouldFailIpInvalidOctetoMax() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 			Ip ip = new Ip("192.168.0.255");
 		});
@@ -40,7 +40,7 @@ class IpTest {
 	}
 	
 	@Test
-	public void shouldFailIpInvalidOctetoMin() {
+	void shouldFailIpInvalidOctetoMin() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 			Ip ip = new Ip("192.168.0.-1");
 		});
@@ -49,7 +49,7 @@ class IpTest {
 	}
 
 	@Test
-	public void shouldFailIpInvalidOctetoCharacter() {
+	void shouldFailIpInvalidOctetoCharacter() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 			Ip ip = new Ip("192.168.0.a");
 		});
@@ -58,7 +58,7 @@ class IpTest {
 	}
 	
 	@Test
-	public void shouldReturnIp() {
+	void shouldReturnIp() {
 		Ip ip = new Ip(IP);
 		
 		assertThat(ip.getIp()).as("shouldReturnIp").isEqualTo(IP);

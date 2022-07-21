@@ -45,38 +45,38 @@ class HackerDetectorImplTest {
 	}
 	
 	@Test
-	public void shouldreturnNull() {
+	void shouldreturnNull() {
 		assertThat(hackerDetectorImplementation.parseLine(null)).as("shouldreturnNull").isNull();
 	}
 	
 	@Test
-	public void shouldreturnNull3campos() {
+	void shouldreturnNull3campos() {
 		assertThat(hackerDetectorImplementation.parseLine("a,b,c")).as("shouldreturnNull").isNull();
 	}
 
 	@Test
-	public void shouldreturnNullBadIp() {
+	void shouldreturnNullBadIp() {
 		assertThat(hackerDetectorImplementation.parseLine("a,b," + SIGNIN_FAILURE + ",d")).as("shouldreturnNullBadIp").isNull();
 	}
 
 	@Test
-	public void shouldreturnNullBadEPOCH() {
+	void shouldreturnNullBadEPOCH() {
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenThrow(new NumberFormatException());
 		assertThat(hackerDetectorImplementation.parseLine(LINE_BAD_EPOCH)).as("shouldreturnNullBadEPOCH").isNull();
 	}
 
 	@Test
-	public void shouldreturnNullLoginOk() {
+	void shouldreturnNullLoginOk() {
 		assertThat(hackerDetectorImplementation.parseLine(LINE_OK_LOGIN)).as("shouldreturnNullLoginOk").isNull();
 	}
 	
 	@Test
-	public void shouldreturnNullLoginFail() {
+	void shouldreturnNullLoginFail() {
 		assertThat(hackerDetectorImplementation.parseLine(LINE_LOGIN_FAIL)).as("shouldreturnNullLoginFail").isNull();
 	}
 	
 	@Test
-	public void shouldreturnLine() {
+	void shouldreturnLine() {
 		assertThat(hackerDetectorImplementation.parseLine(LINE_OK)).as("shouldreturnLine").isEqualTo(LINE_OK);
 	}
 	

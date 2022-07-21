@@ -18,7 +18,7 @@ class FileEventReaderImplTest {
 	FileEventReaderImpl fileEventReaderImpl;
 
 	@Test
-	public void testRecoveryEventsForIp() {
+	void testRecoveryEventsForIp() {
 		ClassLoader classLoader = getClass().getClassLoader();
 		File file = new File(classLoader.getResource("files/192.168.1.0.txt").getFile());
 		

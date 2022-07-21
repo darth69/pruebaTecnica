@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +13,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.impl.UtilsDateTimeImpl;
-
 @ExtendWith(MockitoExtension.class)
 class UtilsDateTimeImplTest {
 
@@ -23,7 +20,7 @@ class UtilsDateTimeImplTest {
 	UtilsDateTimeImpl utilsDateTimeImpl;
 	
 	@Test
-	public void testParseLocalDateTimeEvent() {
+	void testParseLocalDateTimeEvent() {
 		
 		Instant now =  Instant.now();
 		Long nowEpoch = now.toEpochMilli();
@@ -35,7 +32,7 @@ class UtilsDateTimeImplTest {
 	}
 	
 	@Test
-	public void sholudOrderLocalDateTimeList() {
+	void sholudOrderLocalDateTimeList() {
 		
 		LocalDateTime min = LocalDateTime.now();
 		LocalDateTime max = min.plusDays(1L);

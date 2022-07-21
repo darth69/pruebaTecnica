@@ -16,7 +16,7 @@ class LoggerToLogTest {
 	LoggerToLog service;
 	
 	@Test
-	public void  logBadParseLine() {
+	void  logBadParseLine() {
 		NullPointerException exception = new NullPointerException("test");
 		assertThat(service.logBadParseLine("test", exception)).as("logBadParseLine").isEqualTo("class java.lang.NullPointerException !!!! test -> test");
 	}

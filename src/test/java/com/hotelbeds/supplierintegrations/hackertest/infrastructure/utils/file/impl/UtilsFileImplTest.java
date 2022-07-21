@@ -12,8 +12,6 @@ import org.junit.jupiter.api.io.TempDir;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.file.impl.UtilsFileImpl;
-
 @ExtendWith(MockitoExtension.class)
 class UtilsFileImplTest {
 
@@ -42,7 +40,7 @@ class UtilsFileImplTest {
 	}
 	
 	@Test
-	public void testCrearDirectoriosNoExiste() {
+	void testCrearDirectoriosNoExiste() {
 		
 		utilsFileImpl.CrearDirectorios(testDir);
 		
@@ -52,7 +50,7 @@ class UtilsFileImplTest {
 	}
 	
 	@Test
-	public void testCrearDirectoriosExiste() {
+	void testCrearDirectoriosExiste() {
 				
 		utilsFileImpl.CrearDirectorios(baseTestDir);
 				
