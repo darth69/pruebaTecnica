@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventWriter;
@@ -17,7 +18,10 @@ import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.dateti
 public class FileEventWriterImpl implements FileEventWriter{
 	
 	@Autowired
-	UtilsDateTime utilsDateTime;
+	private UtilsDateTime utilsDateTime;
+	
+	@Value("${fileeventwriter.limit}")
+	private long limit;
 
 	@Override
 	public boolean writeEvents(File file, List<LocalDateTime> events) throws IOException {
@@ -26,6 +30,7 @@ public class FileEventWriterImpl implements FileEventWriter{
 		List<String> epochList = events.stream()
 			.map(utilsDateTime::LocalDateTimeToEpoch)
 			.map(x -> x.toString())
+			.limit(limit)
 			.collect(Collectors.toList());
 		
 		for (String epoch : epochList) {
