@@ -7,15 +7,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hotelbeds.supplierintegrations.hackertest.application.enums.LoggerType;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator.ConfigLoader;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventReader;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger.LoggerFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class FileEventReaderImpl implements FileEventReader{
+	
+	@Autowired
+	private ConfigLoader configLoader;
+	
+	private LoggerFactory logger;
 	
 	@Override
 	public ArrayList<String> recoveryEventsForIp(File file) {
@@ -24,7 +33,13 @@ public class FileEventReaderImpl implements FileEventReader{
 			return events;
 		}
 		
-		log.info("Cargando Ips a memoria");
+		//Se controla si logger es nulo para poder ejecutar los test unitarios
+		String loggerType = configLoader.getLoggerType();
+		if(!loggerType.isEmpty()) {
+			logger = LoggerType.valueOf(loggerType).getLogger();
+		}
+		
+		log.debug("Cargando Ips a memoria");
 		BufferedReader bufferedReader;			
 		try {
 			bufferedReader = new BufferedReader(new FileReader(file));
@@ -35,11 +50,11 @@ public class FileEventReaderImpl implements FileEventReader{
 				}
 			bufferedReader.close();
 		} catch (FileNotFoundException e) {
-			log.error("Fichero no encontrado -> " + file.getAbsolutePath(), e);			
+			logger.logException("Fichero no encontrado -> " + file.getAbsolutePath(), e);			
 		} catch (IOException e) {
-			log.error("Error al cargar fichero -> " + file.getAbsolutePath(), e);			
+			logger.logException("Error al cargar fichero -> " + file.getAbsolutePath(), e);			
 		}
-		log.info("Ips cargadas en memoria");
+		log.debug("Ips cargadas en memoria");
 		return events;
 	}
 

@@ -18,23 +18,31 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator.ConfigLoader;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @ExtendWith(MockitoExtension.class)
 class FileEventWriterImplTest {
 	
+	private static final long CINCO_LONG = 5L;
+
+	private static final String FILES_192_168_1_1_TXT = "files/192.168.1.1.txt";
+
 	@InjectMocks
 	private FileEventWriterImpl fileEventWriterImpl;
 	
 	@Mock
 	private UtilsDateTime utilsDateTime;
+	
+	@Mock
+	private ConfigLoader configLoader;
 
 	@Test
 	void testWriteEvents() {
 		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource("files/192.168.1.1.txt").getFile());
+		File file = new File(classLoader.getResource(FILES_192_168_1_1_TXT).getFile());
 		
-		ReflectionTestUtils.setField(fileEventWriterImpl, "limit", 5L);
+		when(configLoader.getRetryLimit()).thenReturn(CINCO_LONG);
 		
 		assertThat(file).exists();
 		
@@ -45,8 +53,6 @@ class FileEventWriterImplTest {
 		}
 		
 		boolean exception = false;
-		
-		
 		
 		try {
 			fileEventWriterImpl.writeEvents(file, events);
