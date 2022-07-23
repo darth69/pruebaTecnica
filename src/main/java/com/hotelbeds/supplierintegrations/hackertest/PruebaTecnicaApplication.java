@@ -1,4 +1,4 @@
-package com.hotelbeds.pruebatecnica;
+package com.hotelbeds.supplierintegrations.hackertest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
