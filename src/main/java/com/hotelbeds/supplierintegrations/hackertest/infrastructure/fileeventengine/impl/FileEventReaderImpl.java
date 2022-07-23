@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class FileEventReaderImpl implements FileEventReader{
+public class FileEventReaderImpl implements FileEventReader, Serializable{	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3605101239770221547L;
+	
 	
 	@Autowired
 	private ConfigLoader configLoader;

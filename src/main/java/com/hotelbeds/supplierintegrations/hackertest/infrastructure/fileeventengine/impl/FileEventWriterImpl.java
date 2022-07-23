@@ -3,6 +3,7 @@ package com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventen
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +16,13 @@ import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventeng
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @Service
-public class FileEventWriterImpl implements FileEventWriter{
+public class FileEventWriterImpl implements FileEventWriter, Serializable{	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3605101239770221546L;
+	
 	
 	@Autowired
 	private UtilsDateTime utilsDateTime;

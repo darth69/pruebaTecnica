@@ -1,5 +1,6 @@
 package com.hotelbeds.supplierintegrations.hackertest.detector.impl;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,13 @@ import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.dateti
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
 
 @Service
-public class HackerDetectorImpl implements HackerDetector{
+public class HackerDetectorImpl implements HackerDetector, Serializable{	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3605101239770221549L;
+	
 	
 	private static final String SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 	private static final String SIGNIN_FAILURE = "SIGNIN_FAILURE";

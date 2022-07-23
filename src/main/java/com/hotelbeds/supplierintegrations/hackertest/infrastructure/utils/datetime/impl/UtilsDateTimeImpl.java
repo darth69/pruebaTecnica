@@ -1,5 +1,6 @@
 package com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.impl;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -12,7 +13,13 @@ import org.springframework.stereotype.Service;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @Service
-public class UtilsDateTimeImpl implements UtilsDateTime {
+public class UtilsDateTimeImpl implements UtilsDateTime , Serializable{	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3605101239770221545L;
+	
 	
 	@Override
 	public LocalDateTime parseLocalDateTimeEvent(String campo) {

@@ -1,5 +1,6 @@
 package com.hotelbeds.supplierintegrations.hackertest.application.detector;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -10,9 +11,12 @@ import org.springframework.stereotype.Service;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator.ConfigLoader;
 
 @Service
-public class DetectorEngineImpl implements DetectorEngine{
+public class DetectorEngineImpl implements DetectorEngine, Serializable{	
 	
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3605101239770221550L;
 	
 	@Autowired
 	private ConfigLoader configLoader;

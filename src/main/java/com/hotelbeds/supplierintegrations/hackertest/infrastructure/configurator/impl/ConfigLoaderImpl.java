@@ -1,5 +1,7 @@
 package com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator.impl;
 
+import java.io.Serializable;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -8,8 +10,13 @@ import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator
 
 @Service
 @Scope("singleton")
-public class ConfigLoaderImpl implements ConfigLoader{
-
+public class ConfigLoaderImpl implements ConfigLoader, Serializable{	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3605101239770221548L;
+	
 	@Value("${logger.type}")
 	private String loggerType;
 	
