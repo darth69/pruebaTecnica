@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -19,9 +20,12 @@ import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import com.hotelbeds.supplierintegrations.hackertest.application.detector.DetectorEngine;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator.ConfigLoader;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFromFile;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventReader;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventWriter;
@@ -57,12 +61,15 @@ class DetectorFromFileTest {
 	@Mock
 	FileEventWriter fileEventWriter;
 	
+	@Mock
+	private ConfigLoader configLoader;
+	
+	@Mock
+	private DetectorEngine detectorEngine;
+	
 	@BeforeEach
 	private void initTest() {
-		ReflectionTestUtils.setField(detectorFromFile, "rutaAlmacenIps", "/ips");
-		ReflectionTestUtils.setField(detectorFromFile, "maxLimit", 300L);
-		ReflectionTestUtils.setField(detectorFromFile, "minLimit", -300L);
-		ReflectionTestUtils.setField(detectorFromFile, "retryLimit", 1L);
+		when(configLoader.getRutaAlmacenIps()).thenReturn("/ips");	
 	}
 	
 	@Test
@@ -83,6 +90,7 @@ class DetectorFromFileTest {
 		when(fileEventReader.recoveryEventsForIp(any())).thenReturn(events);
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenReturn(ahora.plusSeconds(LONG_300PLUS));
 		doNothing().when(utilsFile).crearDirectorios(any());
+		when(detectorEngine.detectIp(any(), any())).thenReturn(true);
 		
 		assertThat(detectorFromFile.analizeIp(new Ip(IP_192_168_1_0), ahora)).as("shouldTrue300Plus").isTrue();
 	}
@@ -104,6 +112,7 @@ class DetectorFromFileTest {
 		when(utilsDateTime.orderLocalDateTimeList(any())).thenReturn(ldtList);
 		when(fileEventReader.recoveryEventsForIp(any())).thenReturn(events);
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenReturn(ahora.plusSeconds(LONG_300MINUS));
+		when(detectorEngine.detectIp(any(), any())).thenReturn(true);
 		
 		assertThat(detectorFromFile.analizeIp(new Ip(IP_192_168_1_0), ahora)).as("shouldTrue300Minus").isTrue();
 	}
@@ -125,6 +134,7 @@ class DetectorFromFileTest {
 		when(utilsDateTime.orderLocalDateTimeList(any())).thenReturn(ldtList);
 		when(fileEventReader.recoveryEventsForIp(any())).thenReturn(events);
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenReturn(ahora.plusSeconds(LONG_301MINUS));
+		when(detectorEngine.detectIp(any(), any())).thenReturn(false);
 		
 		assertThat(detectorFromFile.analizeIp(new Ip(IP_192_168_1_0), ahora)).as("shouldFalse301Minus").isFalse();
 	}
@@ -146,6 +156,7 @@ class DetectorFromFileTest {
 		when(utilsDateTime.orderLocalDateTimeList(any())).thenReturn(ldtList);
 		when(fileEventReader.recoveryEventsForIp(any())).thenReturn(events);
 		when(utilsDateTime.parseLocalDateTimeEvent(any())).thenReturn(ahora.plusSeconds(LONG_301PLUS));
+		when(detectorEngine.detectIp(any(), any())).thenReturn(false);
 		
 		assertThat(detectorFromFile.analizeIp(new Ip(IP_192_168_1_0), ahora)).as("shouldFalse301Plus").isFalse();
 	}

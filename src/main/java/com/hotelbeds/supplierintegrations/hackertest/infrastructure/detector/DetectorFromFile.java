@@ -8,8 +8,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.hotelbeds.supplierintegrations.hackertest.application.detector.DetectorEngine;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator.ConfigLoader;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventReader;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventengine.FileEventWriter;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
@@ -19,10 +21,8 @@ import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class DetectorFromFile extends DetectorEngine implements DetectorFactory {
-
-	@Value("${detector.ip.storage.path}")
-	private String rutaAlmacenIps;
+@Service
+public class DetectorFromFile implements DetectorFactory {
 	
 	@Autowired
 	private FileEventReader fileEventReader;
@@ -35,26 +35,31 @@ public class DetectorFromFile extends DetectorEngine implements DetectorFactory 
 	
 	@Autowired
 	private FileEventWriter fileEventWriter;
+	
+	@Autowired
+	private ConfigLoader configLoader;
+	
+	@Autowired
+	private DetectorEngine detectorEngine;
 		
 	@Override
 	public boolean analizeIp(Ip ip, LocalDateTime eventDateTime) {
 		
 		//Crear Objeto para tratamiento del almacen
-		utilsFile.crearDirectorios(rutaAlmacenIps);
+		utilsFile.crearDirectorios(configLoader.getRutaAlmacenIps());
 		
 		// Crear Objeto para cargar los eventos
-		File file = new File(rutaAlmacenIps + "/" + ip.getIp() + ".txt");		
+		File file = new File(configLoader.getRutaAlmacenIps() + "/" + ip.getIp() + ".txt");		
 				
 		//Cargar eventos
 		List<LocalDateTime> events = fileEventReader.recoveryEventsForIp(file).stream().map(utilsDateTime::parseLocalDateTimeEvent).collect(Collectors.toList());
 		
-		//Detectar resultado
-		boolean res = detectIp(events, eventDateTime);
-		
-		//Cargar evento a la lista
-		
+		//Añadir evento a la lista
 		events.add(eventDateTime);
-		
+
+		//Detectar resultado
+		boolean res = detectorEngine.detectIp(events, eventDateTime);
+				
 		//Ordenar elementos para la persistencia de mayor a menor
 		events = utilsDateTime.orderLocalDateTimeList(events);
 		
