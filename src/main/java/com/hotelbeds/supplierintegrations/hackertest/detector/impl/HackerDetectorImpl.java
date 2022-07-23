@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.hotelbeds.supplierintegrations.hackertest.application.enums.DetectorType;
 import com.hotelbeds.supplierintegrations.hackertest.application.enums.LoggerType;
 import com.hotelbeds.supplierintegrations.hackertest.detector.HackerDetector;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator.ConfigLoader;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFactory;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger.LoggerFactory;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
@@ -17,17 +20,35 @@ public class HackerDetectorImpl implements HackerDetector{
 	
 	private static final String SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 	private static final String SIGNIN_FAILURE = "SIGNIN_FAILURE";
-	@Value("${logger.type}")
-	private String loggerType;
+	
+	@Autowired
+	ConfigLoader configLoader;
 	
 	@Autowired
 	private UtilsDateTime utilsDateTime;	
-
+	
+	private DetectorFactory detector;
+	
+	private LoggerFactory logger;
+	
+	private Ip ip;
+	
+	private LocalDateTime eventDateTime;
+	
 	@Override
 	public String parseLine(String line) {
 		
-		LoggerFactory logger = LoggerType.valueOf(loggerType).getLogger();
-		
+		//Se controla si logger es nulo para poder ejecutar los test unitarios
+		String loggerType = configLoader.getLoggerType();
+		if(!loggerType.isEmpty()) {
+			logger = LoggerType.valueOf(loggerType).getLogger();
+		}		
+
+		//Se controla si detector es nulo para poder ejecutar los test unitarios
+		String detectorType = configLoader.getDetectorType();
+		if(!detectorType.isEmpty()) {
+			detector = DetectorType.valueOf(detectorType).getDetector();
+		}
 		// If guarda para evitar fallos en caso de que la linea sea nula
 		if(null == line) {
 			return null;
@@ -52,8 +73,7 @@ public class HackerDetectorImpl implements HackerDetector{
 			logger.logBadParseLine(line, new IllegalArgumentException("Opción de login no valida"));
 			return null;
 		}
-		
-		Ip ip;
+				
 		//Creamos la IP desde el primer campo
 		try {
 			ip = new Ip(campos[0]);
@@ -61,17 +81,21 @@ public class HackerDetectorImpl implements HackerDetector{
 			logger.logBadParseLine(line, e);
 			return null;
 		} 
-		LocalDateTime event;
+		
 		//Convertir el EPOCH a LocalDateTime
 		try {
-			event = utilsDateTime.parseLocalDateTimeEvent(campos[1]);
+			eventDateTime = utilsDateTime.parseLocalDateTimeEvent(campos[1]);
 		} catch (NumberFormatException e) {			
 			logger.logBadParseLine(line, e);
 			return null;
 		}
 		
 		//Analizar la linea para detectar intento de hack		
+		if(detector.analizeIp(ip, eventDateTime)) {
+			return line;			
+		}
 		
-		return line;
+		return null;
+		
 	}
 }

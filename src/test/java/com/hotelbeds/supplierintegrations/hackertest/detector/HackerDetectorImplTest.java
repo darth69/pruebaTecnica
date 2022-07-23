@@ -13,14 +13,18 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import com.hotelbeds.supplierintegrations.hackertest.detector.impl.HackerDetectorImpl;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator.ConfigLoader;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFactory;
+import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFromFile;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @ExtendWith(MockitoExtension.class)
 class HackerDetectorImplTest {
 
+	private static final String DETECTORFROMFILE_STRING = "DETECTORFROMFILE";
+	private static final String LOGGER2LOG_STRING = "LOGGER2LOG";
 	private static final String IP = "192.168.1.0";
 	private static final String BAD_EPOCH = "92233720368547758071";	
 	private static final Long EPOCH_NOW = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);	
@@ -39,10 +43,17 @@ class HackerDetectorImplTest {
 	@Mock
 	private UtilsDateTime utilsDateTime;
 	
+	@Mock
+	private ConfigLoader configLoader;
+	
+	@Mock
+	private DetectorFromFile detectorFromFile;
+	
 	@BeforeEach
 	private void initTest() {
-		ReflectionTestUtils.setField(hackerDetectorImplementation, "loggerType", "LOGGER2LOG");		
-	}
+		when(configLoader.getLoggerType()).thenReturn(LOGGER2LOG_STRING);		
+		when(configLoader.getDetectorType()).thenReturn("");	
+	}	
 	
 	@Test
 	void shouldreturnNull() {
@@ -77,8 +88,7 @@ class HackerDetectorImplTest {
 	
 	@Test
 	void shouldreturnLine() {
+		when(detectorFromFile.analizeIp(any(), any())).thenReturn(true);
 		assertThat(hackerDetectorImplementation.parseLine(LINE_OK)).as("shouldreturnLine").isEqualTo(LINE_OK);
-	}
-	
-		
+	}		
 }
