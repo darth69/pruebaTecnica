@@ -2,6 +2,7 @@ package com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,8 +23,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class DetectorFromFile implements DetectorFactory {
+public class DetectorFromFile implements DetectorFactory, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3127105774369678223L;
+
 	@Autowired
 	private FileEventReader fileEventReader;
 	

@@ -1,12 +1,19 @@
 package com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger;
 
+import java.io.Serializable;
+
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class LoggerToLog implements LoggerFactory {
+public class LoggerToLog implements LoggerFactory, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6887389928830987490L;
 
 	@Override
 	public String logBadParseLine(String line, Exception e) {
