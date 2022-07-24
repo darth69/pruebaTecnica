@@ -5,7 +5,7 @@ import com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger.Logge
 public enum LoggerType {
 	LOGGER2LOG(){
 		
-		LoggerFactory loggerFactory;
+		private LoggerFactory loggerFactory;
 		
 		@Override
 		public LoggerFactory getLogger() {

@@ -8,7 +8,7 @@ public enum DetectorType {
 	
 	DETECTORFROMFILE(){
 		
-		DetectorFactory detectorFactory;
+		private DetectorFactory detectorFactory;
 		
 		@Override
 		public DetectorFactory getDetector() {
