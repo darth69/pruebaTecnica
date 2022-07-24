@@ -64,11 +64,9 @@ public class UtilsDateTimeImpl implements UtilsDateTime , Serializable{
 		//Calculamos los minutos dibidiendo por 60
 		Double minutos = segundos / 60;
 		
-		//Redondeamos los minutos
-		Long res = Math.round(minutos);
+		//Redondeamos los minutos y los devolvemos
+		return Math.round(minutos);
 				
-		//Devolvemos los minutos
-		return res;
 	}
 
 }

@@ -47,7 +47,7 @@ public class FileEventWriterImpl implements FileEventWriter, Serializable{
 			fw.write(epoch + System.lineSeparator());
 		}
 		
-		//cerramos fichero;	
+		//cerramos fichero	
 		fw.close();
 		
 		return true;
