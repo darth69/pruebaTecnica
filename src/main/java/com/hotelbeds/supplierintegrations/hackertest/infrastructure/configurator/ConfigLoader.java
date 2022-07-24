@@ -1,6 +1,8 @@
 package com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator;
 
-public interface ConfigLoader {
+import java.io.Serializable;
+
+public interface ConfigLoader extends Serializable{
 
 	String getLoggerType();
 

@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.hotelbeds.supplierintegrations.hackertest.detector.HackerDetector;
-import com.hotelbeds.supplierintegrations.hackertest.detector.impl.HackerDetectorImpl;
 
 import lombok.extern.slf4j.Slf4j;
 

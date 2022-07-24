@@ -16,14 +16,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.hotelbeds.supplierintegrations.hackertest.detector.impl.HackerDetectorImpl;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator.ConfigLoader;
-import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFactory;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFromFile;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @ExtendWith(MockitoExtension.class)
 class HackerDetectorImplTest {
-
-	private static final String DETECTORFROMFILE_STRING = "DETECTORFROMFILE";
+	
 	private static final String LOGGER2LOG_STRING = "LOGGER2LOG";
 	private static final String IP = "192.168.1.0";
 	private static final String BAD_EPOCH = "92233720368547758071";	

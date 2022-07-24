@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.hotelbeds.supplierintegrations.hackertest.PruebaTecnicaApplication;
-
 @SpringBootTest
 class PruebaTecnicaApplicationTest {
 
