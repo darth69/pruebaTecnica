@@ -2,10 +2,11 @@ package com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventen
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface FileEventWriter {
+public interface FileEventWriter extends Serializable{
 	
 	boolean writeEvents(File file, List<LocalDateTime> events) throws IOException;
 }

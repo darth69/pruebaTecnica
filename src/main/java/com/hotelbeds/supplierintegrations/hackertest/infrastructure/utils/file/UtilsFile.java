@@ -1,6 +1,8 @@
 package com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.file;
 
-public interface UtilsFile {
+import java.io.Serializable;
+
+public interface UtilsFile  extends Serializable{
 
 	void crearDirectorios(String ruta);
 

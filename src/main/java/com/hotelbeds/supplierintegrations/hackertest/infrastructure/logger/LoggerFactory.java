@@ -1,6 +1,8 @@
 package com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger;
 
-public interface LoggerFactory {
+import java.io.Serializable;
+
+public interface LoggerFactory extends Serializable{
 	
 	public String logBadParseLine(String line, Exception e);
 

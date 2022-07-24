@@ -1,8 +1,14 @@
 package com.hotelbeds.supplierintegrations.hackertest.model;
 
+import java.io.Serializable;
 
-public class Ip {
+public class Ip implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3441544345424985950L;
+	
 	private Byte[] octeto = new Byte[4] ;
 	
 	public Ip(String ip) {
