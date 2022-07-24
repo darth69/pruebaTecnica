@@ -16,14 +16,14 @@ import com.hotelbeds.supplierintegrations.hackertest.infrastructure.fileeventeng
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.utils.datetime.UtilsDateTime;
 
 @Service
+//Servicio registrador de eventos en formato de ficheros
 public class FileEventWriterImpl implements FileEventWriter, Serializable{	
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3605101239770221546L;
-	
-	
+		
 	@Autowired
 	private UtilsDateTime utilsDateTime;
 		
@@ -32,18 +32,22 @@ public class FileEventWriterImpl implements FileEventWriter, Serializable{
 
 	@Override
 	public boolean writeEvents(File file, List<LocalDateTime> events) throws IOException {
+		//Creamos filewriter
 		FileWriter fw = new FileWriter(file);
 				
+		//Convertimos los eventos en Epochs para consultarlos mas tarde y alamcenamos el limite de los retry
 		List<String> epochList = events.stream()
 			.map(utilsDateTime::localDateTimeToEpoch)
 			.map(x -> x.toString())
 			.limit(configLoader.getRetryLimit())
 			.collect(Collectors.toList());
 		
+		//Volcamos a fichero
 		for (String epoch : epochList) {
 			fw.write(epoch + System.lineSeparator());
 		}
-			
+		
+		//cerramos fichero;	
 		fw.close();
 		
 		return true;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.hotelbeds.supplierintegrations.hackertest.application.enums.DetectorType;
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFromFile;
 
+//Injector de detectores en los enums al inicio
 @Component    
 public class DetectorTypeInjector {
    

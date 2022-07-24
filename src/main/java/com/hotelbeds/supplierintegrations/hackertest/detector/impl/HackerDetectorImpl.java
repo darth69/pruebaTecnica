@@ -98,9 +98,11 @@ public class HackerDetectorImpl implements HackerDetector, Serializable{
 		
 		//Analizar la linea para detectar intento de hack		
 		if(detector.analizeIp(ip, eventDateTime)) {
+			//Si el detector detecta intrusion devuelve la linea
 			return line;			
 		}
 		
+		//Si no se detecto nada devuelve null
 		return null;
 		
 	}

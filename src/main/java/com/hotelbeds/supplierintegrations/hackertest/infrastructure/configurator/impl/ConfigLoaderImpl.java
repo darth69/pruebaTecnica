@@ -10,6 +10,7 @@ import com.hotelbeds.supplierintegrations.hackertest.infrastructure.configurator
 
 @Service
 @Scope("singleton")
+//Singleton para cargar las configuraciones desde el fichero de Application.settings
 public class ConfigLoaderImpl implements ConfigLoader, Serializable{	
 	
 	/**

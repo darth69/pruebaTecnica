@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import com.hotelbeds.supplierintegrations.hackertest.model.Ip;
 
+//Factgory par la carga de Detectores
 public interface DetectorFactory extends Serializable {
 	public boolean analizeIp(Ip ip, LocalDateTime eventDateTime);
 }

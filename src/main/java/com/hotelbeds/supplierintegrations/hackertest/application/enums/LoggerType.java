@@ -2,6 +2,7 @@ package com.hotelbeds.supplierintegrations.hackertest.application.enums;
 
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.logger.LoggerFactory;
 
+//Enumerador data los tipos de Loggers del Factory
 public enum LoggerType {
 	LOGGER2LOG(){
 		

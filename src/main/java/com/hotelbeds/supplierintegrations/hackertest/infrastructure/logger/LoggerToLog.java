@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+//Logger que se encarga de volvar los eventos al log del sistema
 public class LoggerToLog implements LoggerFactory, Serializable {
 
 	/**

@@ -20,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+//Servicio lector de eventos desde los ficheros
 public class FileEventReaderImpl implements FileEventReader, Serializable{	
 	
 	/**
@@ -35,7 +36,9 @@ public class FileEventReaderImpl implements FileEventReader, Serializable{
 	
 	@Override
 	public ArrayList<String> recoveryEventsForIp(File file) {
+		//Generación de array para almacenar los eventos
 		ArrayList<String> events = new ArrayList<>();
+		//Si no existe el fichero se devuelven los eventos vacios.
 		if(!file.exists()) {
 			return events;
 		}
@@ -46,6 +49,7 @@ public class FileEventReaderImpl implements FileEventReader, Serializable{
 			logger = LoggerType.valueOf(loggerType).getLogger();
 		}
 		
+		//Carga de los registros en memoria
 		log.debug("Cargando Ips a memoria");
 		BufferedReader bufferedReader;			
 		try {
@@ -57,10 +61,13 @@ public class FileEventReaderImpl implements FileEventReader, Serializable{
 				}
 			bufferedReader.close();
 		} catch (FileNotFoundException e) {
+			//Registrar si no se encuentra el fichero
 			logger.logException("Fichero no encontrado -> " + file.getAbsolutePath(), e);			
 		} catch (IOException e) {
+			//Registrar fallos de acceso a ficheros
 			logger.logException("Error al cargar fichero -> " + file.getAbsolutePath(), e);			
 		}
+		//Devolvemos eventos
 		log.debug("Ips cargadas en memoria");
 		return events;
 	}

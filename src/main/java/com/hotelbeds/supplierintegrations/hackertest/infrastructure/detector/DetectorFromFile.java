@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+//Detector que se vasa en el uso de ficheros para almacenar los eventos fallidos detectados y poder realizar los calculos
 public class DetectorFromFile implements DetectorFactory, Serializable {
 	
 	/**

@@ -23,10 +23,11 @@ public class DetectorEngineImpl implements DetectorEngine, Serializable{
 	
 	@Override
 	public boolean detectIp(List<LocalDateTime> events, LocalDateTime eventDateTime) {
+		//Contamos los eventos fallados entre los limites configurados
 		Long res = events.stream().map(event -> ChronoUnit.SECONDS.between(event, eventDateTime))
 				.filter(event -> event >= configLoader.getMinLimit() && event <= configLoader.getMaxLimit())				
 				.count();
-		
+		//devolvemos si el calculo supera el limite de fallos.
 		return res >= configLoader.getRetryLimit(); 
 	}
 }

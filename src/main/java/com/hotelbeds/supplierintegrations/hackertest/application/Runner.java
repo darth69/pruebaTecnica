@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
+//Runner para lanzar los procesos
 public class Runner implements CommandLineRunner{
 
 	@Autowired
@@ -43,9 +44,11 @@ public class Runner implements CommandLineRunner{
 			}
 		});
 		
+		//Calculamos las diferencias de minutos
 		Long cientoVeinte = utilsDateTime.diffBetweenDateTimes("Thu, 21 Dec 2000 16:01:00 +0400", "Thu, 21 Dec 2000 16:01:29 +0200");
 		Long cientoVeintiuno = utilsDateTime.diffBetweenDateTimes("Thu, 21 Dec 2000 16:01:00 +0400", "Thu, 21 Dec 2000 16:01:30 +0200");
 		
+		//Sacar Resultados
 		log.info("------------------------------------------");
 		log.info("CALCULO DE DIFERENCIA DE FECHAS EN MINUTOS");
 		log.info("------------------------------------------");

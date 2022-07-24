@@ -2,12 +2,11 @@ package com.hotelbeds.supplierintegrations.hackertest.application.enums;
 
 import com.hotelbeds.supplierintegrations.hackertest.infrastructure.detector.DetectorFactory;
 
+
+// Enumerador data los tipos de Detectores del Factory
 public enum DetectorType {
 	
-	
-	
-	DETECTORFROMFILE(){
-		
+	DETECTORFROMFILE(){		
 		private DetectorFactory detectorFactory;
 		
 		@Override
