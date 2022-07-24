@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,6 +45,22 @@ public class UtilsDateTimeImpl implements UtilsDateTime , Serializable{
 	public Long localDateTimeToEpoch(LocalDateTime ldt) {	
 		Instant instant = ldt.atZone(ZoneId.systemDefault()).toInstant();	
 		return instant.toEpochMilli(); 
+	}
+	
+	@Override
+	public Long diffBetweenDateTimes(String start, String end) {
+		ZonedDateTime zdtStart = ZonedDateTime.parse(start ,DateTimeFormatter.RFC_1123_DATE_TIME);
+		ZonedDateTime zdtEnd = ZonedDateTime.parse(end ,DateTimeFormatter.RFC_1123_DATE_TIME);
+		
+		ChronoUnit chronoUnit = ChronoUnit.SECONDS;
+		
+		Double segundos = Double.valueOf(chronoUnit.between(zdtStart, zdtEnd));
+		
+		Double minutos = segundos / 60;
+		
+		Long res = Math.round(minutos);
+				
+		return res;
 	}
 
 }

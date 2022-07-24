@@ -16,6 +16,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class UtilsDateTimeImplTest {
 
+	private static final long CIENTO_VENTIUNO = 121L;
+	private static final long CIENTO_VEINTE = 120L;
 	@InjectMocks
 	UtilsDateTimeImpl utilsDateTimeImpl;
 	
@@ -49,6 +51,18 @@ class UtilsDateTimeImplTest {
 				.as("sholudOrderLocalDateTimeList")
 				.isEqualTo(sorted);
 		
+	}
+	
+	@Test
+	void shouldReturn120() {
+		Long res = utilsDateTimeImpl.diffBetweenDateTimes("Thu, 21 Dec 2000 16:01:00 +0400", "Thu, 21 Dec 2000 16:01:29 +0200");
+		assertThat(res).isEqualTo(CIENTO_VEINTE);
+	}
+	
+	@Test
+	void shouldReturn121() {
+		Long res = utilsDateTimeImpl.diffBetweenDateTimes("Thu, 21 Dec 2000 16:01:00 +0400", "Thu, 21 Dec 2000 16:01:30 +0200");
+		assertThat(res).isEqualTo(CIENTO_VENTIUNO);
 	}
 
 }

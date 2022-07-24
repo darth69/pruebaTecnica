@@ -12,4 +12,5 @@ public interface UtilsDateTime extends Serializable{
 	
 	Long localDateTimeToEpoch(LocalDateTime ldt);
 
+	Long diffBetweenDateTimes(String start, String end);
 }
