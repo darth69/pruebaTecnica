@@ -2,8 +2,6 @@
 
 Prueba Tecnica basada en Spring Boot y Java 1.8
 
-Se aplican patron Factory para dejarlisto para poder implementar distintas formas de procesar los datos.
-
 El fichero de configuracion tiene las siguiente variables.
 
 - logger.type = Tipo de Looger a usar para el registros de eventos
